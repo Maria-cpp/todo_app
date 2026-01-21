@@ -2,7 +2,13 @@
   "permissions": {
     "allow": [
       "Bash(python -m venv:*)",
-      "Bash(.venvScriptspip install -r backendrequirements.txt)"
+      "Bash(.venvScriptspip install -r backendrequirements.txt)",
+      "Skill(sp.specify)",
+      "Bash(git fetch:*)",
+      "Bash(ls:*)",
+      "Bash(powershell -ExecutionPolicy Bypass -File \".specify/scripts/powershell/create-new-feature.ps1\" -Json -Number 1 -ShortName \"user-auth\" \"User authentication with email/password login, signup, logout, session management\")",
+      "Bash(./venv/Scripts/pip.exe install:*)",
+      "Bash(../venv/Scripts/python.exe:*)"
     ]
   }
 }

@@ -17,6 +17,23 @@ export interface CreateTaskInput {
   due_date?: string;
 }
 
+export interface UpdateTaskInput {
+  title?: string;
+  description?: string;
+  due_date?: string;
+  completed?: boolean;
+}
+
+export interface User {
+  id: string;
+  email: string;
+  name: string | null;
+}
+
+export interface UpdateUserInput {
+  name?: string;
+}
+
 class ApiClient {
   private baseUrl: string;
 
@@ -30,6 +47,7 @@ class ApiClient {
   ): Promise<T> {
     const response = await fetch(`${this.baseUrl}${endpoint}`, {
       ...options,
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
         ...options.headers,
@@ -56,6 +74,41 @@ class ApiClient {
     sort: "created" | "title" | "due_date" = "created"
   ): Promise<Task[]> {
     return this.request<Task[]>(`/api/tasks?status=${status}&sort=${sort}`);
+  }
+
+  async getTask(id: number): Promise<Task> {
+    return this.request<Task>(`/api/tasks/${id}`);
+  }
+
+  async updateTask(id: number, data: UpdateTaskInput): Promise<Task> {
+    return this.request<Task>(`/api/tasks/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(data),
+    });
+  }
+
+  async deleteTask(id: number): Promise<void> {
+    await fetch(`${this.baseUrl}/api/tasks/${id}`, {
+      method: "DELETE",
+      credentials: "include",
+    });
+  }
+
+  async toggleTaskComplete(id: number): Promise<Task> {
+    return this.request<Task>(`/api/tasks/${id}/complete`, {
+      method: "PATCH",
+    });
+  }
+
+  async getCurrentUser(): Promise<User> {
+    return this.request<User>("/api/users/me");
+  }
+
+  async updateCurrentUser(data: UpdateUserInput): Promise<User> {
+    return this.request<User>("/api/users/me", {
+      method: "PUT",
+      body: JSON.stringify(data),
+    });
   }
 }
 
