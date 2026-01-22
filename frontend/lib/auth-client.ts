@@ -1,3 +1,7 @@
+"use client";
+
+import { useState, useEffect } from "react";
+
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
 export interface User {
@@ -8,6 +12,12 @@ export interface User {
 
 export interface AuthResponse {
   user: User | null;
+  error?: { message: string };
+}
+
+export interface UseSessionReturn {
+  data: User | null;
+  isPending: boolean;
   error?: { message: string };
 }
 
@@ -88,4 +98,24 @@ export async function getSession(): Promise<AuthResponse> {
   } catch (err) {
     return { user: null };
   }
+}
+
+export function useSession(): UseSessionReturn {
+  const [data, setData] = useState<User | null>(null);
+  const [isPending, setIsPending] = useState(true);
+  const [error, setError] = useState<{ message: string }>();
+
+  useEffect(() => {
+    const fetchSession = async () => {
+      setIsPending(true);
+      const response = await getSession();
+      setData(response.user);
+      setError(response.error);
+      setIsPending(false);
+    };
+
+    fetchSession();
+  }, []);
+
+  return { data, isPending, error };
 }

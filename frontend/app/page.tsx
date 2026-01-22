@@ -81,7 +81,7 @@ export default function Home() {
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-3xl font-bold text-gray-900">Todo App</h1>
         <div className="flex items-center gap-4">
-          <span className="text-sm text-gray-600">{session.user.email}</span>
+          <span className="text-sm text-gray-600">{session.email}</span>
           <button
             onClick={handleLogout}
             className="text-sm text-red-600 hover:underline"
