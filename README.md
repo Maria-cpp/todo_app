@@ -1,12 +1,30 @@
-# Todo App
+# ZUM FLUX AI TODO APP ⚡
 
-A full-stack todo application built with FastAPI and Next.js.
+A neon-themed, full-stack todo application built with FastAPI and Next.js featuring a cyberpunk aesthetic with animated gradient backgrounds.
+
+## 🎨 Design & Theme
+
+- **Theme:** Neon Cyberpunk with animated gradient backgrounds
+- **Primary Colors:** Cyan (#00d4ff), Pink (#ff006e), Purple (#b537f2)
+- **Animations:** Floating text, gradient shifts, neon glow effects
+- **Layout:** Side-by-side responsive design (Create Task | Your Tasks)
+
+## Screenshots
+
+### Dashboard
+![ZUM FLUX AI TODO APP Dashboard](images/dashboard.png)
+*Main dashboard showing task creation form and task list with neon styling*
+
+### Login Page
+![Login Page](images/login.png)
+*Cyberpunk-themed login interface with neon borders and gradient button*
 
 ## Tech Stack
 
 - **Backend:** FastAPI, SQLModel, PostgreSQL
 - **Frontend:** Next.js 14, TypeScript, Tailwind CSS
 - **Auth:** Better Auth (email/password)
+- **Styling:** Tailwind CSS with custom neon animations
 
 ## Project Structure
 
@@ -160,3 +178,16 @@ BETTER_AUTH_SECRET=your-secret-key-change-in-production
 - [x] Update tasks
 - [x] Delete tasks
 - [x] Mark tasks complete
+- [x] Neon cyberpunk theme with animations
+- [x] Real-time task updates
+- [x] Responsive design
+
+## Credits
+
+This project was created using AI-assisted development tools and specification-driven development:
+
+- **Claude (Anthropic)** - Code generation, architecture, and problem-solving
+- **GitHub Copilot** - Real-time code suggestions
+- **Spec Kit** - Specification-driven development framework
+
+For detailed credits and development process, see [CREDITS.md](CREDITS.md)

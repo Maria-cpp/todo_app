@@ -53,10 +53,10 @@ export default function TaskForm({ onTaskCreated }: TaskFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-5">
       <div>
-        <label htmlFor="title" className="block text-sm font-medium text-gray-700">
-          Title *
+        <label htmlFor="title" className="block text-sm font-semibold text-cyan-300 neon-glow mb-2">
+          📌 Title *
         </label>
         <input
           type="text"
@@ -64,16 +64,16 @@ export default function TaskForm({ onTaskCreated }: TaskFormProps) {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           maxLength={200}
-          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+          className="w-full rounded-lg border border-cyan-500/50 bg-black/40 px-4 py-2 text-white placeholder-gray-400 focus:border-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 transition-all"
           placeholder="Enter task title"
           disabled={isSubmitting}
         />
-        <p className="mt-1 text-xs text-gray-500">{title.length}/200</p>
+        <p className="mt-1 text-xs text-pink-300">{title.length}/200</p>
       </div>
 
       <div>
-        <label htmlFor="description" className="block text-sm font-medium text-gray-700">
-          Description
+        <label htmlFor="description" className="block text-sm font-semibold text-cyan-300 neon-glow mb-2">
+          📝 Description
         </label>
         <textarea
           id="description"
@@ -81,37 +81,40 @@ export default function TaskForm({ onTaskCreated }: TaskFormProps) {
           onChange={(e) => setDescription(e.target.value)}
           maxLength={1000}
           rows={3}
-          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+          className="w-full rounded-lg border border-cyan-500/50 bg-black/40 px-4 py-2 text-white placeholder-gray-400 focus:border-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 transition-all resize-none"
           placeholder="Enter task description (optional)"
           disabled={isSubmitting}
         />
-        <p className="mt-1 text-xs text-gray-500">{description.length}/1000</p>
+        <p className="mt-1 text-xs text-pink-300">{description.length}/1000</p>
       </div>
 
       <div>
-        <label htmlFor="dueDate" className="block text-sm font-medium text-gray-700">
-          Due Date
+        <label htmlFor="dueDate" className="block text-sm font-semibold text-cyan-300 neon-glow mb-2">
+          ⏰ Due Date
         </label>
         <input
           type="datetime-local"
           id="dueDate"
           value={dueDate}
           onChange={(e) => setDueDate(e.target.value)}
-          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+          className="w-full rounded-lg border border-cyan-500/50 bg-black/40 px-4 py-2 text-cyan-300 placeholder-gray-400 focus:border-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 transition-all"
+          style={{
+            colorScheme: 'dark',
+          }}
           disabled={isSubmitting}
         />
       </div>
 
       {error && (
-        <p className="text-sm text-red-600">{error}</p>
+        <p className="text-sm text-pink-400 neon-glow-pink bg-pink-900/20 px-4 py-2 rounded-lg">🚨 {error}</p>
       )}
 
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full rounded-md bg-blue-600 px-4 py-2 text-white font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full rounded-lg bg-gradient-to-r from-cyan-600 to-pink-600 px-4 py-3 text-white font-bold hover:from-cyan-500 hover:to-pink-500 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-black disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 neon-glow"
       >
-        {isSubmitting ? "Creating..." : "Create Task"}
+        {isSubmitting ? "✨ Creating..." : "🚀 Create Task"}
       </button>
     </form>
   );

@@ -1,3 +1,64 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Neon Colors */
+:root {
+  --neon-cyan: #00d4ff;
+  --neon-pink: #ff006e;
+  --neon-purple: #b537f2;
+  --neon-green: #39ff14;
+}
+
+/* Moving Gradient Background */
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+body {
+  background: linear-gradient(-45deg, #1a0033, #0d0221, #2a0845, #1a0055);
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
+  overflow-x: hidden;
+}
+
+/* Neon Glow Effect */
+.neon-glow {
+  text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan), 0 0 30px var(--neon-cyan);
+}
+
+.neon-glow-pink {
+  text-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink), 0 0 30px var(--neon-pink);
+}
+
+.neon-border {
+  border: 2px solid var(--neon-cyan);
+  box-shadow: 0 0 10px var(--neon-cyan), inset 0 0 10px var(--neon-cyan);
+}
+
+.neon-border-pink {
+  border: 2px solid var(--neon-pink);
+  box-shadow: 0 0 10px var(--neon-pink), inset 0 0 10px var(--neon-pink);
+}
+
+/* Floating Animation */
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}

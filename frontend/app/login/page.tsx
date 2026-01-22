@@ -42,33 +42,33 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-gray-50 p-6">
-      <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
-        <h1 className="text-2xl font-bold text-gray-900 text-center mb-6">
-          {isLogin ? "Login" : "Sign Up"}
+    <div className="min-h-screen flex items-center justify-center p-6">
+      <div className="neon-border-pink bg-black/50 backdrop-blur rounded-2xl p-8 w-full max-w-md shadow-2xl">
+        <h1 className="text-4xl font-black text-center mb-8 neon-glow-pink tracking-wider">
+          {isLogin ? "⚡ LOGIN" : "✨ SIGN UP"}
         </h1>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-5">
           {!isLogin && (
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                Name
+              <label htmlFor="name" className="block text-sm font-semibold text-cyan-300 neon-glow mb-2">
+                👤 Full Name
               </label>
               <input
                 type="text"
                 id="name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-                placeholder="Your name"
+                className="w-full rounded-lg border border-cyan-500/50 bg-black/40 px-4 py-2 text-white placeholder-gray-400 focus:border-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 transition-all"
+                placeholder="Your full name"
                 disabled={isLoading}
               />
             </div>
           )}
 
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-              Email
+            <label htmlFor="email" className="block text-sm font-semibold text-cyan-300 neon-glow mb-2">
+              📧 Email Address
             </label>
             <input
               type="email"
@@ -76,15 +76,15 @@ export default function LoginPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+              className="w-full rounded-lg border border-cyan-500/50 bg-black/40 px-4 py-2 text-white placeholder-gray-400 focus:border-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 transition-all"
               placeholder="you@example.com"
               disabled={isLoading}
             />
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-              Password
+            <label htmlFor="password" className="block text-sm font-semibold text-cyan-300 neon-glow mb-2">
+              🔐 Password
             </label>
             <input
               type="password"
@@ -93,38 +93,44 @@ export default function LoginPage() {
               onChange={(e) => setPassword(e.target.value)}
               required
               minLength={8}
-              className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+              className="w-full rounded-lg border border-cyan-500/50 bg-black/40 px-4 py-2 text-white placeholder-gray-400 focus:border-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 transition-all"
               placeholder="Minimum 8 characters"
               disabled={isLoading}
             />
           </div>
 
           {error && (
-            <p className="text-sm text-red-600">{error}</p>
+            <p className="text-sm text-pink-400 neon-glow-pink bg-pink-900/30 px-4 py-3 rounded-lg">🚨 {error}</p>
           )}
 
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full rounded-md bg-blue-600 px-4 py-2 text-white font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full rounded-lg bg-gradient-to-r from-cyan-600 to-pink-600 px-4 py-3 text-white font-bold hover:from-cyan-500 hover:to-pink-500 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-black disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 neon-glow text-lg"
           >
-            {isLoading ? "Loading..." : isLogin ? "Login" : "Sign Up"}
+            {isLoading ? "⏳ Loading..." : isLogin ? "🚀 LOGIN" : "🎉 SIGN UP"}
           </button>
         </form>
 
-        <p className="mt-4 text-center text-sm text-gray-600">
-          {isLogin ? "Don't have an account? " : "Already have an account? "}
-          <button
-            onClick={() => {
-              setIsLogin(!isLogin);
-              setError(null);
-            }}
-            className="text-blue-600 hover:underline"
-          >
-            {isLogin ? "Sign Up" : "Login"}
-          </button>
-        </p>
+        <div className="mt-6 p-4 border-t border-cyan-500/30">
+          <p className="text-center text-sm text-gray-300">
+            {isLogin ? "Don't have an account? " : "Already have an account? "}
+            <button
+              onClick={() => {
+                setIsLogin(!isLogin);
+                setError(null);
+              }}
+              className="text-pink-300 neon-glow-pink hover:text-pink-200 font-semibold transition-colors"
+            >
+              {isLogin ? "Sign Up Now" : "Login Now"}
+            </button>
+          </p>
+        </div>
+
+        <div className="mt-4 text-center text-xs text-cyan-400/60">
+          Welcome to ZUM FLUX AI TODO APP ✨
+        </div>
       </div>
-    </main>
+    </div>
   );
 }

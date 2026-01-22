@@ -66,9 +66,9 @@ export default function Home() {
 
   if (isPending) {
     return (
-      <main className="max-w-2xl mx-auto p-6">
-        <p className="text-gray-500">Loading...</p>
-      </main>
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-cyan-300 neon-glow text-2xl">⏳ Loading...</p>
+      </div>
     );
   }
 
@@ -77,91 +77,107 @@ export default function Home() {
   }
 
   return (
-    <main className="max-w-2xl mx-auto p-6">
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Todo App</h1>
-        <div className="flex items-center gap-4">
-          <span className="text-sm text-gray-600">{session.email}</span>
-          <button
-            onClick={handleLogout}
-            className="text-sm text-red-600 hover:underline"
-          >
-            Logout
-          </button>
-        </div>
-      </div>
-
-      <div className="bg-white rounded-lg shadow p-6 mb-8">
-        <h2 className="text-xl font-semibold text-gray-800 mb-4">Create New Task</h2>
-        <TaskForm onTaskCreated={handleTaskCreated} />
-      </div>
-
-      <div className="bg-white rounded-lg shadow p-6">
-        <h2 className="text-xl font-semibold text-gray-800 mb-4">Tasks</h2>
-        {isLoading ? (
-          <p className="text-gray-500">Loading tasks...</p>
-        ) : tasks.length === 0 ? (
-          <p className="text-gray-500">No tasks yet. Create one above!</p>
-        ) : (
-          <ul className="space-y-3">
-            {tasks.map((task) => (
-              <li
-                key={task.id}
-                className={`border rounded-md p-4 ${
-                  task.completed
-                    ? "border-green-200 bg-green-50"
-                    : "border-gray-200"
-                }`}
+    <div className="min-h-screen relative">
+      {/* Header */}
+      <header className="neon-border-pink bg-black/30 backdrop-blur-md border-b sticky top-0 z-50">
+        <div className="max-w-6xl mx-auto px-6 py-6">
+          <div className="flex justify-between items-center">
+            <div className="flex-1">
+              <h1 className="text-4xl font-black neon-glow-pink float-animation tracking-wider">
+                ⚡ ZUM FLUX AI TODO APP
+              </h1>
+            </div>
+            <div className="flex items-center gap-6">
+              <span className="text-sm text-cyan-300 neon-glow px-4 py-2 rounded-full bg-cyan-900/20">
+                {session.email}
+              </span>
+              <button
+                onClick={handleLogout}
+                className="px-6 py-2 rounded-lg bg-pink-600/80 hover:bg-pink-500 text-white font-semibold transition-all duration-300 neon-glow-pink hover:shadow-lg"
               >
-                <div className="flex justify-between items-start">
-                  <div className="flex-1">
-                    <h3
-                      className={`font-medium ${
-                        task.completed
-                          ? "text-gray-500 line-through"
-                          : "text-gray-900"
-                      }`}
-                    >
-                      {task.title}
-                    </h3>
-                    {task.description && (
-                      <p className="text-gray-600 text-sm mt-1">
-                        {task.description}
-                      </p>
-                    )}
-                    <div className="text-xs text-gray-400 mt-2 flex gap-4">
-                      <span>
-                        Created: {new Date(task.created_at).toLocaleDateString()}
-                      </span>
-                      {task.due_date && (
-                        <span>Due: {new Date(task.due_date).toLocaleString()}</span>
-                      )}
+                Logout
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Main Content */}
+      <main className="max-w-7xl mx-auto p-6">
+        <div className="grid grid-cols-2 gap-6">
+          {/* Left Column - Create New Task */}
+          <div className="neon-border-pink bg-black/40 backdrop-blur rounded-2xl p-8">
+            <h2 className="text-2xl font-bold text-cyan-300 neon-glow mb-6">✨ Create New Task</h2>
+            <TaskForm onTaskCreated={handleTaskCreated} />
+          </div>
+
+          {/* Right Column - Your Tasks */}
+          <div className="neon-border bg-black/40 backdrop-blur rounded-2xl p-8">
+            <h2 className="text-2xl font-bold text-cyan-300 neon-glow mb-6">📋 Your Tasks</h2>
+            {isLoading ? (
+              <p className="text-cyan-300 neon-glow text-center py-8">⏳ Loading tasks...</p>
+            ) : tasks.length === 0 ? (
+              <p className="text-pink-300 neon-glow-pink text-center py-8">🎯 No tasks yet. Create one on the left!</p>
+            ) : (
+              <ul className="space-y-3">
+                {tasks.map((task) => (
+                  <li
+                    key={task.id}
+                    className={`border rounded-xl p-4 transition-all duration-300 ${
+                      task.completed
+                        ? "neon-border bg-green-900/20 border-green-500"
+                        : "neon-border bg-black/20 border-cyan-400"
+                    }`}
+                  >
+                    <div className="flex justify-between items-start">
+                      <div className="flex-1">
+                        <h3
+                          className={`font-bold text-lg ${
+                            task.completed
+                              ? "text-green-300 line-through opacity-60"
+                              : "text-cyan-300 neon-glow"
+                          }`}
+                        >
+                          {task.title}
+                        </h3>
+                        {task.description && (
+                          <p className="text-gray-300 text-sm mt-2">
+                            {task.description}
+                          </p>
+                        )}
+                        <div className="text-xs text-pink-300 mt-3 flex gap-4">
+                          <span>📅 Created: {new Date(task.created_at).toLocaleDateString()}</span>
+                          {task.due_date && (
+                            <span>⏰ Due: {new Date(task.due_date).toLocaleString()}</span>
+                          )}
+                        </div>
+                      </div>
+                      <div className="flex gap-2 ml-4">
+                        <button
+                          onClick={() => handleToggleComplete(task.id)}
+                          className={`text-xs px-3 py-1 rounded-lg font-semibold transition-all duration-300 ${
+                            task.completed
+                              ? "bg-green-600/50 text-green-300 hover:bg-green-600 neon-glow"
+                              : "bg-cyan-600/50 text-cyan-300 hover:bg-cyan-600 neon-glow"
+                          }`}
+                        >
+                          {task.completed ? "✓ Undo" : "✔ Complete"}
+                        </button>
+                        <button
+                          onClick={() => handleDeleteTask(task.id)}
+                          className="text-xs px-3 py-1 rounded-lg bg-pink-600/50 text-pink-300 hover:bg-pink-600 font-semibold transition-all duration-300 neon-glow-pink"
+                        >
+                          🗑 Delete
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                  <div className="flex gap-2 ml-4">
-                    <button
-                      onClick={() => handleToggleComplete(task.id)}
-                      className={`text-xs px-2 py-1 rounded ${
-                        task.completed
-                          ? "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                          : "bg-green-100 text-green-700 hover:bg-green-200"
-                      }`}
-                    >
-                      {task.completed ? "Undo" : "Complete"}
-                    </button>
-                    <button
-                      onClick={() => handleDeleteTask(task.id)}
-                      className="text-xs px-2 py-1 rounded bg-red-100 text-red-700 hover:bg-red-200"
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </div>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-    </main>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </div>
+      </main>
+    </div>
   );
 }
